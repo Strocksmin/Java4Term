@@ -16,9 +16,9 @@ public class Config {
     @Bean
     public HikariDataSource dataSource(){
         HikariConfig config = new HikariConfig();
-        config.setJdbcUrl("jdbc:postgresql://localhost:5432/pr16db");
+        config.setJdbcUrl("jdbc:postgresql://localhost:5432/pr15db");
         config.setUsername("postgres");
-        config.setPassword("secret");
+        config.setPassword("7059314");
         config.setDriverClassName("org.postgresql.Driver");
         return new HikariDataSource(config);
     }
@@ -27,7 +27,7 @@ public class Config {
     public LocalSessionFactoryBean sessionFactory(DataSource dataSource){
         LocalSessionFactoryBean factoryBean = new LocalSessionFactoryBean();
         factoryBean.setDataSource(dataSource);
-        factoryBean.setPackagesToScan("PR16.Application");
+        factoryBean.setPackagesToScan("com.example.lab14");
         Properties properties = new Properties();
         properties.setProperty("hibernate.dialect", "org.hibernate.dialect.PostgreSQLDialect");
         factoryBean.setHibernateProperties(properties);

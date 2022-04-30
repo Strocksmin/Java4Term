@@ -1,0 +1,22 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Getting Started: Serving Web Content</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+    <div>
+        <form th:method="post" >
+            <input th:type="text" th:name="name" placeholder="Название">
+            <input th:type="text" th:name="address" placeholder="Адрес">
+            <button type="submit" th:method="add">Добавить</button>
+        </form>
+    </div>
+    <table th:each="bank : ${banks}" border="1px" bgcolor="#66cdaa">
+        <tr>
+            <td><span th:text="${bank.getName()}"> Название </span></td>
+            <td><span th:text="${bank.getAddress()}"> Адрес </span></td>
+        </tr>
+    </table>
+</body>
+</html>

@@ -1,64 +1,34 @@
 package com.example.lab14.controller;
 
 import com.example.lab14.model.Bank;
+import com.example.lab14.service.BankService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
-import java.util.List;
-
-@RequestMapping("/Bank")
 @Controller
 public class BankController {
-    List<Bank> list = new ArrayList<>();
+    @Autowired
+    private BankService bankService;
 
-    @GetMapping("/add")
-    public String add(@RequestParam(name = "name", required = false, defaultValue = "default") String name,
-                      @RequestParam(name = "address", required = false , defaultValue = "default") String address,
+    @PostMapping("/bank")
+    public String add(@RequestParam String name, @RequestParam String address,
                       Model model)
     {
-        list.add(new Bank(name, address));
-        model.addAttribute("name", name);
-        model.addAttribute("address", address);
-        return "Bank";
+        bankService.addBank(new Bank(name, address));
+        return "bank";
     }
-    @GetMapping("/{name}")
-    public String get(@PathVariable String name, Model model) {
-        model.addAttribute("name", "not found");
-        model.addAttribute("address", "not found");
-        for (int i = 0; i < list.size(); i++) {
-            if (list.get(i).getName().equals(name)) {
-                model.addAttribute("name", list.get(i).getName());
-                model.addAttribute("address", list.get(i).getAddress() );
-            }
-        }
-        return "Bank";
+
+    @GetMapping("bank/del/{id}")
+    public String del(@PathVariable int id, Model model) {
+        bankService.deleteBank(id);
+        return "bank";
     }
-    @GetMapping("/del/{name}")
-    public String del(@PathVariable String name, Model model) {
-        model.addAttribute("name", "not found");
-        model.addAttribute("address", "not found");
-        for (int i = 0; i < list.size(); i++) {
-            if (list.get(i).getName().equals(name)) {
-                model.addAttribute("name", list.get(i).getName());
-                model.addAttribute("address", list.get(i).getAddress() );
-                list.remove(i);
-                break;
-            }
-        }
-        return "Bank";
-    }
-    @GetMapping("/all")
-    public String all(Model model) {
-        String[] names = new String[list.size()];
-        for (int i = 0; i < list.size(); i++) {
-            names[i] = list.get(i).getName();
-        }
-        model.addAttribute("names", names);
-        return "AllBanks";
+
+    @GetMapping("/bank")
+    public String bank(Model model) {
+        model.addAttribute("banks", bankService.getBanks());
+        return "bank";
     }
 }
