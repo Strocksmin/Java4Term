@@ -1,5 +1,7 @@
 package com.example.lab14.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 
 @Entity
@@ -17,6 +19,14 @@ public class Card {
             GenerationType.SEQUENCE)
     @Column(name = "id")
     private int id;
+
+
+    public Bank getBank() {
+        return bank;
+    }
+
+    @ManyToOne
+    public Bank bank;
 
     public Card() {
 

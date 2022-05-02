@@ -1,6 +1,7 @@
 package com.example.lab14.model;
 
 import javax.persistence.*;
+import java.util.List;
 import java.util.UUID;
 
 @Entity
@@ -18,6 +19,10 @@ public class Bank {
             GenerationType.SEQUENCE)
     @Column(name = "id")
     private int id;
+
+
+    @OneToMany(mappedBy = "bank")
+    private List<Card> cards;
 
     public Bank() {
 

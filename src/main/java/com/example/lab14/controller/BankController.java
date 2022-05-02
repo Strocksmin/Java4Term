@@ -1,11 +1,14 @@
 package com.example.lab14.controller;
 
 import com.example.lab14.model.Bank;
+import com.example.lab14.model.Card;
 import com.example.lab14.service.BankService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @Controller
 public class BankController {
@@ -31,4 +34,10 @@ public class BankController {
         model.addAttribute("banks", bankService.getBanks());
         return "bank";
     }
+
+    @RequestMapping("/banks")
+    public @ResponseBody List<Bank> banks(Model model) {
+        return bankService.getBanks();
+    }
+
 }

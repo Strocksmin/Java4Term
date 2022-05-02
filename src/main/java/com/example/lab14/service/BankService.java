@@ -17,6 +17,7 @@ public class BankService {
         this.sessionFactory = sessionFactory;
     }
 
+
     @PostConstruct
     void init() {
         session = sessionFactory.openSession();
@@ -40,9 +41,9 @@ public class BankService {
         session.getTransaction().commit();
     }
 
-    public List<Bank> getBank(int id) {
+    public Bank getBank(int id) {
         return session.createQuery("select b from Bank b where b.id ='" + id + "'",
-                Bank.class).getResultList();
+                Bank.class).getSingleResult();
     }
 
     public List<Bank> getBanks() {
