@@ -40,4 +40,13 @@ public class BankController {
         return bankService.getBanks();
     }
 
+    @GetMapping("/getBankByName")
+    public @ResponseBody List<Bank> filterCode(Model model) {
+        return bankService.getByName();
+    }
+
+    @GetMapping("/getBankByAddress")
+    public @ResponseBody List<Bank> filterNumber(Model model) {
+        return bankService.getByAddress();
+    }
 }

@@ -44,4 +44,14 @@ public class CardController {
     public @ResponseBody Bank getCardBank(@PathVariable int cardId) {
         return cardService.getBankbyCard(cardId);
     }
+
+    @GetMapping("/getCardByCode")
+    public @ResponseBody List<Card> filterCode(Model model) {
+        return cardService.getByCode();
+    }
+
+    @GetMapping("/getCardByNumber")
+    public @ResponseBody List<Card> filterNumber(Model model) {
+        return cardService.getByNumber();
+    }
 }

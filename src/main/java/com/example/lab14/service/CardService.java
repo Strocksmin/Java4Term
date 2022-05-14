@@ -5,20 +5,24 @@ import com.example.lab14.model.Bank;
 import com.example.lab14.model.Card;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.query.Query;
 import org.springframework.stereotype.Component;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
 import java.util.List;
 
 @Component
 public class CardService {
     private final SessionFactory sessionFactory;
     private Session session;
+
+    private CriteriaBuilder builder;
+    private CriteriaQuery<Card> criteriaQuery;
+    private Root<Card> root;
 
     public CardService(SessionFactory sessionFactory) {
         this.sessionFactory = sessionFactory;
@@ -27,6 +31,9 @@ public class CardService {
     @PostConstruct
     void init() {
         session = sessionFactory.openSession();
+        builder = session.getCriteriaBuilder();
+        criteriaQuery = builder.createQuery(Card.class);
+        root = criteriaQuery.from(Card.class);
     }
 
     @PreDestroy
@@ -63,5 +70,16 @@ public class CardService {
                 .setParameter("id", cardId).getSingleResult().getBank();
     }
 
+    public List<Card> getByCode() {
+        criteriaQuery.select(root).orderBy(builder.asc(root.get("code")));
+        Query<Card> query = session.createQuery(criteriaQuery);
+        return query.getResultList();
+    }
+
+    public List<Card> getByNumber() {
+        criteriaQuery.select(root).orderBy(builder.asc(root.get("code")));
+        Query<Card> query = session.createQuery(criteriaQuery);
+        return query.getResultList();
+    }
 }
 
