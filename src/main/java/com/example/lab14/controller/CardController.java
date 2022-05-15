@@ -36,7 +36,7 @@ public class CardController {
     }
 
     @RequestMapping("/cards")
-    public @ResponseBody List<Card> banks(Model model) {
+    public @ResponseBody Iterable<Card> banks(Model model) {
         return cardService.getCards();
     }
 

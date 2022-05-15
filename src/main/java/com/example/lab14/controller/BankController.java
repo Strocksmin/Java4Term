@@ -36,7 +36,7 @@ public class BankController {
     }
 
     @RequestMapping("/banks")
-    public @ResponseBody List<Bank> banks(Model model) {
+    public @ResponseBody Iterable<Bank> banks(Model model) {
         return bankService.getBanks();
     }
 
