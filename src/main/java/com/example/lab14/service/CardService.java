@@ -32,7 +32,7 @@ public class CardService {
         return cardRepository.getCardById(id);
     }
 
-    public Iterable<Card> getCards() {
+    public List<Card> getCards() {
         log.info("Get all cards");
         return cardRepository.findAll();
     }

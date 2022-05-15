@@ -31,7 +31,7 @@ public class BankService {
         return bankRepository.getBankById(id);
     }
 
-    public Iterable<Bank> getBanks() {
+    public List<Bank> getBanks() {
         log.info("Get all banks");
         return bankRepository.findAll();
     }

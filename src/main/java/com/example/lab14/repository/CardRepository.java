@@ -8,7 +8,7 @@ import java.util.List;
 
 public interface CardRepository extends CrudRepository<Card, Integer> {
     Card getCardById(int id);
-
+    List<Card> findAll();
     List<Card> findByOrderByCardNumber();
     List<Card> findByOrderByCode();
 }

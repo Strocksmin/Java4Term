@@ -9,6 +9,7 @@ import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.scheduling.annotation.EnableAsync;
+import org.springframework.scheduling.annotation.EnableScheduling;
 
 import javax.sql.DataSource;
 import java.util.Properties;
@@ -17,6 +18,7 @@ import java.util.Properties;
 @EnableAspectJAutoProxy
 @EnableJpaRepositories(basePackages = {"com.example.lab14"})
 @EnableAsync
+@EnableScheduling
 public class Config {
     @Bean
     public DataSource dataSource(){
