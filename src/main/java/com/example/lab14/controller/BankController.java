@@ -3,6 +3,7 @@ package com.example.lab14.controller;
 import com.example.lab14.model.Bank;
 import com.example.lab14.model.Card;
 import com.example.lab14.service.BankService;
+import com.example.lab14.service.EmailService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,10 +16,14 @@ public class BankController {
     @Autowired
     private BankService bankService;
 
+    @Autowired
+    private EmailService emailService;
+
     @PostMapping("/bank")
     public String add(@RequestParam String name, @RequestParam String address,
                       Model model)
     {
+        emailService.sendAddBankEmail(new Bank(name, address));
         bankService.addBank(new Bank(name, address));
         return "bank";
     }

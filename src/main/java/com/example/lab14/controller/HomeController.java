@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
-public class Home {
+public class HomeController {
 
     @GetMapping(value = "/home", produces = MediaType.TEXT_HTML_VALUE)
     @ResponseBody
