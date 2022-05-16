@@ -2,7 +2,6 @@ package com.example.lab14.model;
 
 import javax.persistence.*;
 import java.util.List;
-import java.util.UUID;
 
 @Entity
 @Table(name = "banks")
