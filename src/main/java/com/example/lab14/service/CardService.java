@@ -19,6 +19,10 @@ public class CardService {
     @Autowired
     private CardRepository cardRepository;
 
+    public CardService(CardRepository cardRepository) {
+        this.cardRepository = cardRepository;
+    }
+
     public void addCard(Card card) {
         log.info("Add card {}", card);
         cardRepository.save(card);

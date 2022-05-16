@@ -1,10 +1,15 @@
 package com.example.lab14.model;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import javax.persistence.*;
 import java.util.List;
 
 @Entity
 @Table(name = "banks")
+@Getter
+@Setter
 public class Bank {
     @Column(name = "name")
     private String name;

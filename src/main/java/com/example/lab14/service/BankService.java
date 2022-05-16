@@ -2,6 +2,7 @@ package com.example.lab14.service;
 
 import com.example.lab14.model.Bank;
 import com.example.lab14.repository.BankRepository;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -11,12 +12,17 @@ import javax.transaction.Transactional;
 import java.util.List;
 
 @Service
+@RequiredArgsConstructor
 @Slf4j
 @Transactional
 public class BankService {
 
     @Autowired
     private BankRepository bankRepository;
+
+    public BankService(BankRepository bankRepository) {
+        this.bankRepository = bankRepository;
+    }
 
     public void addBank(Bank bank) {
         log.info("Add bank {}", bank);
