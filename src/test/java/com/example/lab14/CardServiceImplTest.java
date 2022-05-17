@@ -25,7 +25,7 @@ public class CardServiceImplTest {
 
     @Test
     void getCards(){
-        cardRepository = mock(CardRepository.class);
+        cardRepository=mock(CardRepository.class);
         Card card = new Card();
         card.setCode(252);
         Card card2 = new Card();
